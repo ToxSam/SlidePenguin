@@ -15,14 +15,14 @@
   "main": "bin/index.js",
   "tags": [],
   "scene": {
+    "base": "-140,101",
     "parcels": [
-      "0,4",
-      "0,3",
-      "0,2",
-      "0,1",
-      "0,0"
-    ],
-    "base": "0,0"
+      "-140,105",
+      "-140,104",
+      "-140,103",
+      "-140,102",
+      "-140,101"
+    ]
   },
   "spawnPoints": [
     {
@@ -65,8 +65,5 @@
     "origin": "creator-hub",
     "projectId": "48a7986b-d775-49df-a38d-25a871574301"
   },
-  "rating": "T",
-  "worldConfiguration": {
-    "name": "lowpol.dcl.eth"
-  }
+  "rating": "T"
 }

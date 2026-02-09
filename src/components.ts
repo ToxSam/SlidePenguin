@@ -8,7 +8,10 @@ export const GameState = engine.defineComponent('gameState', {
   score: Schemas.Number,
   hasLost: Schemas.Boolean,
   distanceToHome: Schemas.Number, // Distance in meters to Home01
-  canSwipe: Schemas.Boolean // false once PenguinPlayer reaches z58
+  canSwipe: Schemas.Boolean, // false once PenguinPlayer reaches z58
+  showPenguinFriendDialog: Schemas.Boolean, // true when penguin friend dialog is open
+  countdownShakeX: Schemas.Number, // shake offset for countdown image (pixels)
+  countdownShakeY: Schemas.Number
 })
 
 // Penguin movement component

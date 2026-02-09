@@ -1,4 +1,4 @@
-import { engine, Entity, Transform, PointerEventType, InputAction, pointerEventsSystem, inputSystem, Animator } from '@dcl/sdk/ecs'
+import { engine, Entity, Transform, PointerEventType, InputAction, pointerEventsSystem, inputSystem, Animator, GltfContainer, ColliderLayer } from '@dcl/sdk/ecs'
 import { Vector3, Color4, Quaternion } from '@dcl/sdk/math'
 import { GameState, PenguinMovement, SwipeBox, Penguin, HomeTarget, StartButton, LoseTrigger, PenguinPlayerTag, BroomTag } from './components'
 import { setGameState, resetGameState } from './gameState'
@@ -327,7 +327,10 @@ export function initializeGameEntities() {
     score: 0,
     hasLost: false,
     distanceToHome: 0,
-    canSwipe: true
+    canSwipe: true,
+    showPenguinFriendDialog: false,
+    countdownShakeX: 0,
+    countdownShakeY: 0
   })
 
   // Tag entities
@@ -351,6 +354,34 @@ export function initializeGameEntities() {
     }
   )
 
+  // PenguinFriend.glb: click to open "play game?" dialog
+  const penguinFriendEntity = engine.getEntityOrNullByName('PenguinFriend.glb')
+  if (penguinFriendEntity) {
+    // Enable pointer hits: scene has visibleMeshesCollisionMask 0, so clicks don't register.
+    // Set visible meshes to CL_POINTER so the entity can be clicked.
+    if (GltfContainer.has(penguinFriendEntity)) {
+      const gltf = GltfContainer.getMutable(penguinFriendEntity)
+      gltf.visibleMeshesCollisionMask = ColliderLayer.CL_POINTER
+    }
+    pointerEventsSystem.onPointerDown(
+      {
+        entity: penguinFriendEntity,
+        opts: {
+          button: InputAction.IA_POINTER,
+          hoverText: 'Talk',
+          maxDistance: 10
+        }
+      },
+      () => {
+        if (!gameStateEntity) return
+        const gameState = GameState.get(gameStateEntity)
+        if (gameState.state !== 'idle') return
+        const mutable = GameState.getMutable(gameStateEntity)
+        mutable.showPenguinFriendDialog = true
+      }
+    )
+  }
+
   // Lose zone: we check penguin position vs TriggerLose's box each frame (see penguinMovementSystem).
   // TriggerArea only detects the player avatar, not scene entities like the penguin.
 
@@ -362,6 +393,25 @@ export function initializeGameEntities() {
     isVisible: false,
     lastSwipeTime: 0
   })
+}
+
+/**
+ * Close the penguin friend dialog (No button)
+ */
+export function closePenguinFriendDialog() {
+  if (!gameStateEntity) return
+  const mutable = GameState.getMutable(gameStateEntity)
+  mutable.showPenguinFriendDialog = false
+}
+
+/**
+ * Start the game from the penguin friend dialog (Yes button)
+ */
+export function startGameFromDialog() {
+  if (!gameStateEntity) return
+  const mutable = GameState.getMutable(gameStateEntity)
+  mutable.showPenguinFriendDialog = false
+  startGame()
 }
 
 /**
@@ -422,25 +472,45 @@ function handleSwipe() {
   const currentTime = Date.now() / 1000 // Convert to seconds
 
   // Broom.glb: play BroomSwipe every E press (restart each time, no crossfade)
+  // Use manual state manipulation instead of playSingleAnimation for Godot mobile compatibility
   if (broomEntity && Animator.has(broomEntity)) {
     activeBroomTransition = null
-    Animator.playSingleAnimation(broomEntity, 'BroomSwipe', true)
-    const swipeClip = Animator.getClipOrNull(broomEntity, 'BroomSwipe')
-    if (swipeClip) {
-      swipeClip.loop = false
-      swipeClip.playing = true
+    const animator = Animator.getMutableOrNull(broomEntity)
+    if (animator) {
+      for (const state of animator.states) {
+        state.playing = false
+        state.weight = 0
+        state.shouldReset = false
+      }
+      const broomSwipe = animator.states.find((s: { clip: string }) => s.clip === 'BroomSwipe')
+      if (broomSwipe) {
+        broomSwipe.shouldReset = true  // Force restart from frame 0
+        broomSwipe.playing = true
+        broomSwipe.weight = 1
+        broomSwipe.loop = false
+      }
     }
     broomSwipeRestoreAt = currentTime + BROOM_SWIPE_ANIMATION_DURATION
   }
 
   // PenguinPlayer.glb: play PenguinSwipe01 every E press (restart each time, no crossfade)
+  // Use manual state manipulation instead of playSingleAnimation for Godot mobile compatibility
   if (penguinPlayerEntity && Animator.has(penguinPlayerEntity)) {
     activePenguinPlayerTransition = null
-    Animator.playSingleAnimation(penguinPlayerEntity, 'PenguinSwipe01', true)
-    const swipeClip = Animator.getClipOrNull(penguinPlayerEntity, 'PenguinSwipe01')
-    if (swipeClip) {
-      swipeClip.loop = false
-      swipeClip.playing = true
+    const animator = Animator.getMutableOrNull(penguinPlayerEntity)
+    if (animator) {
+      for (const state of animator.states) {
+        state.playing = false
+        state.weight = 0
+        state.shouldReset = false
+      }
+      const penguinSwipe = animator.states.find((s: { clip: string }) => s.clip === 'PenguinSwipe01')
+      if (penguinSwipe) {
+        penguinSwipe.shouldReset = true  // Force restart from frame 0
+        penguinSwipe.playing = true
+        penguinSwipe.weight = 1
+        penguinSwipe.loop = false
+      }
     }
     penguinPlayerSwipeRestoreAt = currentTime + BROOM_SWIPE_ANIMATION_DURATION
   }
@@ -590,6 +660,12 @@ export function gameStateSystem(dt: number) {
   const gameState = GameState.get(gameStateEntity)
 
   if (gameState.state === 'countdown') {
+    // Shake animation for countdown display (every frame)
+    const t = Date.now() * 0.02
+    const mutableState = GameState.getMutable(gameStateEntity)
+    mutableState.countdownShakeX = Math.sin(t) * 8 + Math.sin(t * 2.3) * 4
+    mutableState.countdownShakeY = Math.cos(t * 1.1) * 6 + Math.cos(t * 1.7) * 3
+
     const currentTime = Date.now()
     const elapsed = (currentTime - lastCountdownUpdate) / 1000 // Convert to seconds
 
@@ -597,13 +673,14 @@ export function gameStateSystem(dt: number) {
       countdownTimer -= 1
       lastCountdownUpdate = currentTime
 
-      const mutableState = GameState.getMutable(gameStateEntity)
       mutableState.countdownValue = countdownTimer
 
       if (countdownTimer <= 0) {
         // Start playing
         mutableState.state = 'playing'
         mutableState.countdownValue = 0
+        mutableState.countdownShakeX = 0
+        mutableState.countdownShakeY = 0
 
         // Penguin: play SlideIdle when game starts (after countdown) with smooth transition
         if (penguinEntity && Animator.has(penguinEntity)) {
