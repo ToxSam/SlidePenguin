@@ -1,8 +1,9 @@
 import { engine } from '@dcl/sdk/ecs'
 import { initializeGameEntities, gameStateSystem, penguinMovementSystem, swipeInputSystem, animationTransitionSystem } from './systems'
 import { setupUi } from './ui'
+import { isServer } from '~system/EngineApi'
 
-export function main() {
+export async function main() {
   // Initialize game entities and set up interactions
   initializeGameEntities()
 
@@ -14,4 +15,8 @@ export function main() {
 
   // Initialize UI
   setupUi()
+
+  if (await isServer({})) {
+    console.log('asd')
+  }
 }
