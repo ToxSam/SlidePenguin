@@ -7,15 +7,17 @@
     "deploy": "sdk-commands deploy",
     "build": "sdk-commands build",
     "upgrade-sdk": "npm install --save-dev @dcl/sdk@latest",
-    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
+    "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next",
+    "server-logs": "sdk-commands sdk-server-logs",
+    "postinstall": "node scripts/patch-hammurabi-bin.js"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.18.1",
-    "@dcl/sdk": "7.18.1"
+    "@dcl/hammurabi-server": "latest",
+    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/authorative-server/dcl-sdk-7.20.1-21728746886.commit-ae61634.tgz"
   },
   "engines": {
-    "node": ">=16.0.0",
-    "npm": ">=6.0.0"
+    "node": ">=20.0.0",
+    "npm": ">=9.0.0"
   },
   "prettier": {
     "semi": false,
