@@ -36,3 +36,8 @@ export const PENGUIN_PLAYER_STOP_Z = 65
 // Tweak here if you want the camera/position after “Play Again” to match a new start area.
 export const PLAYER_INITIAL_POSITION = { x: 8, y: 0, z: 4 }
 export const PLAYER_INITIAL_CAMERA_TARGET = { x: 8, y: 0, z: 20 } // Look along the track
+
+// PenguinFriend.glb: Y-scale bounce on interaction (extra, not from GLB)
+export const PENGUIN_FRIEND_BOUNCE_DURATION = 0.6 // seconds (total animation time)
+export const PENGUIN_FRIEND_BOUNCE_COUNT = 2 // number of up-down cycles in the animation
+export const PENGUIN_FRIEND_SCALE_BOOST = 0.15 // scale.y multiplier (e.g. 1 -> 1.2 -> 1)

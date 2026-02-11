@@ -1,5 +1,5 @@
 import { engine } from '@dcl/sdk/ecs'
-import { initializeGameEntities, gameStateSystem, penguinMovementSystem, swipeInputSystem, animationTransitionSystem } from './systems'
+import { initializeGameEntities, gameStateSystem, penguinMovementSystem, swipeInputSystem, animationTransitionSystem, penguinFriendShakeSystem } from './systems'
 import { setupUi } from './ui'
 
 export function main() {
@@ -11,6 +11,7 @@ export function main() {
   engine.addSystem(penguinMovementSystem)
   engine.addSystem(swipeInputSystem) // E key input handler
   engine.addSystem(animationTransitionSystem)
+  engine.addSystem(penguinFriendShakeSystem)
 
   // Initialize UI
   setupUi()
