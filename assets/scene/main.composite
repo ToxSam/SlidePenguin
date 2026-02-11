@@ -95,12 +95,7 @@
             "position": {
               "x": 8,
               "y": 0,
-              "z": 65
-            },
-            "scale": {
-              "x": 4,
-              "y": 4,
-              "z": 4
+              "z": 72
             },
             "rotation": {
               "x": 0,
@@ -108,15 +103,20 @@
               "z": 0,
               "w": 1
             },
+            "scale": {
+              "x": 4,
+              "y": 4,
+              "z": 4
+            },
             "parent": 0
           }
         },
         "513": {
           "json": {
             "position": {
-              "x": 14.119159698486328,
-              "y": 0.5,
-              "z": 2.889280080795288
+              "x": 14.069779396057129,
+              "y": 0.31318578124046326,
+              "z": 5.652994632720947
             },
             "rotation": {
               "x": 0,
@@ -125,9 +125,9 @@
               "w": 0.7071067690849304
             },
             "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
+              "x": 1.2999999523162842,
+              "y": 1.2999999523162842,
+              "z": 1.2999999523162842
             },
             "parent": 0
           }
@@ -136,19 +136,19 @@
           "json": {
             "position": {
               "x": 12,
-              "y": 0,
+              "y": -2.25,
               "z": 5.945619106292725
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
             },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
             },
             "parent": 0
           }
@@ -221,18 +221,18 @@
             "position": {
               "x": 16,
               "y": 0,
-              "z": 6.75
-            },
-            "scale": {
-              "x": 4,
-              "y": 1,
-              "z": 0.10000000149011612
+              "z": 12.999999046325684
             },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
+            },
+            "scale": {
+              "x": 4,
+              "y": 1,
+              "z": 0.10000000149011612
             },
             "parent": 0
           }
@@ -263,12 +263,7 @@
             "position": {
               "x": 16,
               "y": 0,
-              "z": 58
-            },
-            "scale": {
-              "x": 4,
-              "y": 1,
-              "z": 0.10000000149011612
+              "z": 65
             },
             "rotation": {
               "x": 0,
@@ -276,26 +271,31 @@
               "z": 0,
               "w": 1
             },
+            "scale": {
+              "x": 4,
+              "y": 1,
+              "z": 0.10000000149011612
+            },
             "parent": 0
           }
         },
         "521": {
           "json": {
             "position": {
-              "x": 9.5,
+              "x": 10.29770565032959,
               "y": 0,
-              "z": 7
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
+              "z": 13.249999046325684
             },
             "rotation": {
               "x": 0,
               "y": -0.7071067690849304,
               "z": 0,
               "w": 0.7071067690849304
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
             },
             "parent": 0
           }
@@ -303,20 +303,20 @@
         "522": {
           "json": {
             "position": {
-              "x": 9.5,
+              "x": 10.29770565032959,
               "y": 0,
-              "z": 7
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
+              "z": 13.249999046325684
             },
             "rotation": {
               "x": 0,
               "y": -0.7071067690849304,
               "z": 0,
               "w": 0.7071067690849304
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
             },
             "parent": 0
           }
@@ -326,18 +326,18 @@
             "position": {
               "x": 8,
               "y": 0,
-              "z": 5
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
+              "z": 11.249999046325684
             },
             "rotation": {
               "x": 0,
               "y": 0,
               "z": 0,
               "w": 1
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
             },
             "parent": 0
           }
@@ -452,18 +452,18 @@
             "position": {
               "x": 14.218611717224121,
               "y": 0.6769718527793884,
-              "z": 5.890904903411865
-            },
-            "scale": {
-              "x": 1,
-              "y": 1,
-              "z": 1
+              "z": 10.140905380249023
             },
             "rotation": {
               "x": 0,
               "y": 0.8568792939186096,
               "z": 0,
               "w": -0.5155170559883118
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
             },
             "parent": 0
           }
@@ -492,20 +492,20 @@
         "531": {
           "json": {
             "position": {
-              "x": 12.204691886901855,
+              "x": 12.337080955505371,
               "y": 0.012863109819591045,
-              "z": 3.15651798248291
+              "z": 6.464165687561035
+            },
+            "rotation": {
+              "x": 0,
+              "y": -0.685502290725708,
+              "z": 0,
+              "w": 0.7280393838882446
             },
             "scale": {
               "x": 1.9129173755645752,
               "y": 1.912975788116455,
               "z": 1.9129173755645752
-            },
-            "rotation": {
-              "x": 0,
-              "y": -0.5846095085144043,
-              "z": 0,
-              "w": 0.8112869262695312
             },
             "parent": 0
           }
@@ -569,6 +569,27 @@
               "y": 0.9609822034835815,
               "z": 0,
               "w": -0.27660995721817017
+            },
+            "parent": 0
+          }
+        },
+        "535": {
+          "json": {
+            "position": {
+              "x": 1.1214368343353271,
+              "y": 1.25,
+              "z": 9.852337837219238
+            },
+            "rotation": {
+              "x": 0,
+              "y": 0,
+              "z": 0,
+              "w": 1
+            },
+            "scale": {
+              "x": 1,
+              "y": 1,
+              "z": 1
             },
             "parent": 0
           }
@@ -1175,6 +1196,13 @@
             "visibleMeshesCollisionMask": 0,
             "invisibleMeshesCollisionMask": 3
           }
+        },
+        "535": {
+          "json": {
+            "src": "assets/asset-packs/ambient_music_-_ambient_1/ambient_sound.glb",
+            "visibleMeshesCollisionMask": 0,
+            "invisibleMeshesCollisionMask": 0
+          }
         }
       }
     },
@@ -1305,6 +1333,11 @@
           "json": {
             "value": "PenguinCrowd.glb_11"
           }
+        },
+        "535": {
+          "json": {
+            "value": "Ambient Music - Ambient 1"
+          }
         }
       }
     },
@@ -1318,6 +1351,11 @@
       },
       "data": {
         "515": {
+          "json": {
+            "visible": false
+          }
+        },
+        "535": {
           "json": {
             "visible": false
           }
@@ -1366,7 +1404,7 @@
         "serializationType": "map"
       },
       "data": {
-        "516": {
+        "513": {
           "json": {
             "gizmo": 1
           }
@@ -1710,29 +1748,29 @@
             "layout": {
               "parcels": [
                 {
-                  "x": 0,
-                  "y": 4
+                  "x": -140,
+                  "y": 105
                 },
                 {
-                  "x": 0,
-                  "y": 3
+                  "x": -140,
+                  "y": 104
                 },
                 {
-                  "x": 0,
-                  "y": 2
+                  "x": -140,
+                  "y": 103
                 },
                 {
-                  "x": 0,
-                  "y": 1
+                  "x": -140,
+                  "y": 102
                 },
                 {
-                  "x": 0,
-                  "y": 0
+                  "x": -140,
+                  "y": 101
                 }
               ],
               "base": {
-                "x": 0,
-                "y": 0
+                "x": -140,
+                "y": 101
               }
             },
             "silenceVoiceChat": false,
@@ -1847,7 +1885,8 @@
                   532,
                   533,
                   534,
-                  513
+                  513,
+                  535
                 ]
               },
               {
@@ -1948,6 +1987,10 @@
               },
               {
                 "entity": 513,
+                "children": []
+              },
+              {
+                "entity": 535,
                 "children": []
               }
             ]
@@ -2231,6 +2274,93 @@
       }
     },
     {
+      "name": "asset-packs::Actions",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "serializationType": "int32"
+          },
+          "value": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "serializationType": "utf8-string"
+                },
+                "type": {
+                  "type": "string",
+                  "serializationType": "utf8-string"
+                },
+                "jsonPayload": {
+                  "type": "string",
+                  "serializationType": "utf8-string"
+                },
+                "allowedInBasicView": {
+                  "type": "boolean",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "boolean",
+                    "serializationType": "boolean"
+                  }
+                },
+                "basicViewId": {
+                  "type": "string",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  }
+                },
+                "default": {
+                  "type": "boolean",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "boolean",
+                    "serializationType": "boolean"
+                  }
+                }
+              },
+              "serializationType": "map"
+            },
+            "serializationType": "array"
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "535": {
+          "json": {
+            "id": 1,
+            "value": [
+              {
+                "name": "Play once",
+                "type": "play_sound",
+                "jsonPayload": "{\"src\":\"assets/asset-packs/ambient_music_-_ambient_1/ambient_1.mp3\",\"global\":true}",
+                "allowedInBasicView": true
+              },
+              {
+                "name": "Loop",
+                "type": "play_sound",
+                "jsonPayload": "{\"loop\":true,\"src\":\"assets/scene/Audio/BackgroundIceSong.mp3\",\"global\":true,\"volume\":0.4}",
+                "allowedInBasicView": true,
+                "basicViewId": "loop-sound"
+              },
+              {
+                "name": "Stop",
+                "type": "stop_sound",
+                "jsonPayload": "{}",
+                "allowedInBasicView": true
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
       "name": "asset-packs::Counter",
       "jsonSchema": {
         "type": "object",
@@ -2250,7 +2380,7 @@
         "0": {
           "json": {
             "id": 0,
-            "value": 0
+            "value": 1
           }
         }
       }
@@ -2440,6 +2570,23 @@
               }
             ]
           }
+        },
+        "535": {
+          "json": {
+            "value": [
+              {
+                "type": "on_spawn",
+                "conditions": [],
+                "operation": "and",
+                "actions": [
+                  {
+                    "id": 1,
+                    "name": "Loop"
+                  }
+                ]
+              }
+            ]
+          }
         }
       }
     },
@@ -2528,6 +2675,9 @@
         },
         "534": {
           "json": {}
+        },
+        "535": {
+          "json": {}
         }
       }
     },
@@ -2547,6 +2697,583 @@
         "515": {
           "json": {
             "value": true
+          }
+        }
+      }
+    },
+    {
+      "name": "inspector::Config",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "isBasicViewEnabled": {
+            "type": "boolean",
+            "serializationType": "boolean"
+          },
+          "componentName": {
+            "type": "string",
+            "serializationType": "utf8-string"
+          },
+          "fields": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "serializationType": "utf8-string"
+                },
+                "type": {
+                  "type": "string",
+                  "enum": [
+                    "core::Animator",
+                    "core::AudioSource",
+                    "core::AudioStream",
+                    "core::AvatarAttach",
+                    "core::Billboard",
+                    "core::GltfContainer",
+                    "core-schema::Network-Entity",
+                    "core::Material",
+                    "core::MeshCollider",
+                    "core::MeshRenderer",
+                    "core::NftShape",
+                    "core::PointerEvents",
+                    "core-schema::Sync-Components",
+                    "core::TextShape",
+                    "core::Transform",
+                    "core::Tween",
+                    "core::TweenSequence",
+                    "core::VideoPlayer",
+                    "core::VisibilityComponent",
+                    "core::LightSource",
+                    "core::GltfNodeModifiers",
+                    "core::VirtualCamera",
+                    "inspector::Selection",
+                    "inspector::SceneMetadata-v2",
+                    "inspector::Nodes",
+                    "asset-packs::ActionTypes",
+                    "asset-packs::Actions",
+                    "asset-packs::Counter",
+                    "asset-packs::CounterBar",
+                    "asset-packs::Triggers",
+                    "asset-packs::States",
+                    "inspector::TransformConfig",
+                    "inspector::Hide",
+                    "inspector::Lock",
+                    "inspector::Config",
+                    "inspector::Ground",
+                    "inspector::Tile",
+                    "inspector::CustomAsset",
+                    "asset-packs::AdminTools",
+                    "asset-packs::Rewards",
+                    "asset-packs::VideoScreen",
+                    "inspector::UIState",
+                    "asset-packs::Script"
+                  ],
+                  "default": "asset-packs::Actions",
+                  "serializationType": "enum-string",
+                  "enumObject": {
+                    "ANIMATOR": "core::Animator",
+                    "AUDIO_SOURCE": "core::AudioSource",
+                    "AUDIO_STREAM": "core::AudioStream",
+                    "AVATAR_ATTACH": "core::AvatarAttach",
+                    "BILLBOARD": "core::Billboard",
+                    "GLTF_CONTAINER": "core::GltfContainer",
+                    "NETWORK_ENTITY": "core-schema::Network-Entity",
+                    "MATERIAL": "core::Material",
+                    "MESH_COLLIDER": "core::MeshCollider",
+                    "MESH_RENDERER": "core::MeshRenderer",
+                    "NFT_SHAPE": "core::NftShape",
+                    "POINTER_EVENTS": "core::PointerEvents",
+                    "SYNC_COMPONENTS": "core-schema::Sync-Components",
+                    "TEXT_SHAPE": "core::TextShape",
+                    "TRANSFORM": "core::Transform",
+                    "TWEEN": "core::Tween",
+                    "TWEEN_SEQUENCE": "core::TweenSequence",
+                    "VIDEO_PLAYER": "core::VideoPlayer",
+                    "VISIBILITY_COMPONENT": "core::VisibilityComponent",
+                    "LIGHT_SOURCE": "core::LightSource",
+                    "GLTF_NODE_MODIFIERS": "core::GltfNodeModifiers",
+                    "VIRTUAL_CAMERA": "core::VirtualCamera",
+                    "Selection": "inspector::Selection",
+                    "Scene": "inspector::SceneMetadata-v2",
+                    "Nodes": "inspector::Nodes",
+                    "ActionTypes": "asset-packs::ActionTypes",
+                    "Actions": "asset-packs::Actions",
+                    "Counter": "asset-packs::Counter",
+                    "CounterBar": "asset-packs::CounterBar",
+                    "Triggers": "asset-packs::Triggers",
+                    "States": "asset-packs::States",
+                    "TransformConfig": "inspector::TransformConfig",
+                    "Hide": "inspector::Hide",
+                    "Lock": "inspector::Lock",
+                    "Config": "inspector::Config",
+                    "Ground": "inspector::Ground",
+                    "Tile": "inspector::Tile",
+                    "CustomAsset": "inspector::CustomAsset",
+                    "AdminTools": "asset-packs::AdminTools",
+                    "Rewards": "asset-packs::Rewards",
+                    "VideoScreen": "asset-packs::VideoScreen",
+                    "InspectorUIState": "inspector::UIState",
+                    "Script": "asset-packs::Script"
+                  }
+                },
+                "layout": {
+                  "type": "string",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  }
+                },
+                "basicViewId": {
+                  "type": "string",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  }
+                }
+              },
+              "serializationType": "map"
+            },
+            "serializationType": "array"
+          },
+          "assetId": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "label": {
+            "type": "string",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "string",
+              "serializationType": "utf8-string"
+            }
+          },
+          "sections": {
+            "type": "array",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  },
+                  "label": {
+                    "type": "string",
+                    "serializationType": "optional",
+                    "optionalJsonSchema": {
+                      "type": "string",
+                      "serializationType": "utf8-string"
+                    }
+                  },
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "component": {
+                          "type": "string",
+                          "serializationType": "utf8-string"
+                        },
+                        "widget": {
+                          "type": "string",
+                          "serializationType": "utf8-string"
+                        },
+                        "label": {
+                          "type": "string",
+                          "serializationType": "optional",
+                          "optionalJsonSchema": {
+                            "type": "string",
+                            "serializationType": "utf8-string"
+                          }
+                        },
+                        "type": {
+                          "type": "string",
+                          "serializationType": "optional",
+                          "optionalJsonSchema": {
+                            "type": "string",
+                            "serializationType": "utf8-string"
+                          }
+                        },
+                        "path": {
+                          "type": "string",
+                          "serializationType": "optional",
+                          "optionalJsonSchema": {
+                            "type": "string",
+                            "serializationType": "utf8-string"
+                          }
+                        },
+                        "basicViewId": {
+                          "type": "string",
+                          "serializationType": "optional",
+                          "optionalJsonSchema": {
+                            "type": "string",
+                            "serializationType": "utf8-string"
+                          }
+                        },
+                        "props": {
+                          "type": "object",
+                          "serializationType": "optional",
+                          "optionalJsonSchema": {
+                            "type": "object",
+                            "properties": {
+                              "basic": {
+                                "type": "boolean",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "boolean",
+                                  "serializationType": "boolean"
+                                }
+                              }
+                            },
+                            "serializationType": "map"
+                          }
+                        },
+                        "constraints": {
+                          "type": "object",
+                          "serializationType": "optional",
+                          "optionalJsonSchema": {
+                            "type": "object",
+                            "properties": {
+                              "min": {
+                                "type": "number",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "number",
+                                  "serializationType": "float32"
+                                }
+                              },
+                              "max": {
+                                "type": "number",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "number",
+                                  "serializationType": "float32"
+                                }
+                              },
+                              "minExclusive": {
+                                "type": "number",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "number",
+                                  "serializationType": "float32"
+                                }
+                              },
+                              "maxExclusive": {
+                                "type": "number",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "number",
+                                  "serializationType": "float32"
+                                }
+                              },
+                              "step": {
+                                "type": "number",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "number",
+                                  "serializationType": "float32"
+                                }
+                              },
+                              "multipleOf": {
+                                "type": "number",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "number",
+                                  "serializationType": "float32"
+                                }
+                              },
+                              "minLength": {
+                                "type": "number",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "number",
+                                  "serializationType": "float32"
+                                }
+                              },
+                              "maxLength": {
+                                "type": "number",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "number",
+                                  "serializationType": "float32"
+                                }
+                              },
+                              "pattern": {
+                                "type": "string",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "string",
+                                  "serializationType": "utf8-string"
+                                }
+                              },
+                              "format": {
+                                "type": "string",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "string",
+                                  "serializationType": "utf8-string"
+                                }
+                              },
+                              "default": {
+                                "type": "string",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "string",
+                                  "serializationType": "utf8-string"
+                                }
+                              }
+                            },
+                            "serializationType": "map"
+                          }
+                        },
+                        "transform": {
+                          "type": "object",
+                          "serializationType": "optional",
+                          "optionalJsonSchema": {
+                            "type": "object",
+                            "properties": {
+                              "in": {
+                                "type": "object",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "object",
+                                  "properties": {
+                                    "steps": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "op": {
+                                            "type": "string",
+                                            "serializationType": "utf8-string"
+                                          },
+                                          "onError": {
+                                            "type": "string",
+                                            "serializationType": "optional",
+                                            "optionalJsonSchema": {
+                                              "type": "string",
+                                              "enum": [
+                                                "fail",
+                                                "skip",
+                                                "noop"
+                                              ],
+                                              "default": "noop",
+                                              "serializationType": "enum-string",
+                                              "enumObject": {
+                                                "FAIL": "fail",
+                                                "SKIP": "skip",
+                                                "NOOP": "noop"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "serializationType": "map"
+                                      },
+                                      "serializationType": "array"
+                                    }
+                                  },
+                                  "serializationType": "map"
+                                }
+                              },
+                              "out": {
+                                "type": "object",
+                                "serializationType": "optional",
+                                "optionalJsonSchema": {
+                                  "type": "object",
+                                  "properties": {
+                                    "steps": {
+                                      "type": "array",
+                                      "items": {
+                                        "type": "object",
+                                        "properties": {
+                                          "op": {
+                                            "type": "string",
+                                            "serializationType": "utf8-string"
+                                          },
+                                          "onError": {
+                                            "type": "string",
+                                            "serializationType": "optional",
+                                            "optionalJsonSchema": {
+                                              "type": "string",
+                                              "enum": [
+                                                "fail",
+                                                "skip",
+                                                "noop"
+                                              ],
+                                              "default": "noop",
+                                              "serializationType": "enum-string",
+                                              "enumObject": {
+                                                "FAIL": "fail",
+                                                "SKIP": "skip",
+                                                "NOOP": "noop"
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "serializationType": "map"
+                                      },
+                                      "serializationType": "array"
+                                    }
+                                  },
+                                  "serializationType": "map"
+                                }
+                              }
+                            },
+                            "serializationType": "map"
+                          }
+                        },
+                        "dataSource": {
+                          "type": "object",
+                          "serializationType": "optional",
+                          "optionalJsonSchema": {
+                            "type": "object",
+                            "properties": {
+                              "kind": {
+                                "type": "string",
+                                "serializationType": "utf8-string"
+                              }
+                            },
+                            "serializationType": "map"
+                          }
+                        }
+                      },
+                      "serializationType": "map"
+                    },
+                    "serializationType": "array"
+                  },
+                  "columns": {
+                    "type": "number",
+                    "serializationType": "optional",
+                    "optionalJsonSchema": {
+                      "type": "number",
+                      "serializationType": "float32"
+                    }
+                  },
+                  "helpTooltip": {
+                    "type": "object",
+                    "serializationType": "optional",
+                    "optionalJsonSchema": {
+                      "type": "object",
+                      "properties": {
+                        "text": {
+                          "type": "string",
+                          "serializationType": "utf8-string"
+                        },
+                        "link": {
+                          "type": "string",
+                          "serializationType": "optional",
+                          "optionalJsonSchema": {
+                            "type": "string",
+                            "serializationType": "utf8-string"
+                          }
+                        }
+                      },
+                      "serializationType": "map"
+                    }
+                  }
+                },
+                "serializationType": "map"
+              },
+              "serializationType": "array"
+            }
+          },
+          "helpTooltip": {
+            "type": "object",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "object",
+              "properties": {
+                "text": {
+                  "type": "string",
+                  "serializationType": "utf8-string"
+                },
+                "link": {
+                  "type": "string",
+                  "serializationType": "optional",
+                  "optionalJsonSchema": {
+                    "type": "string",
+                    "serializationType": "utf8-string"
+                  }
+                }
+              },
+              "serializationType": "map"
+            }
+          },
+          "version": {
+            "type": "number",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "number",
+              "serializationType": "float32"
+            }
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "535": {
+          "json": {
+            "isBasicViewEnabled": true,
+            "componentName": "",
+            "fields": [],
+            "assetId": "ambient-music-ambient-1-001",
+            "label": "Ambient Music",
+            "sections": [
+              {
+                "id": "sound",
+                "items": [
+                  {
+                    "component": "asset-packs::Actions",
+                    "widget": "FileUploadField",
+                    "label": "Sound Path",
+                    "path": "src",
+                    "basicViewId": "loop-sound"
+                  },
+                  {
+                    "component": "asset-packs::Actions",
+                    "widget": "RangeField",
+                    "label": "Volume",
+                    "path": "volume",
+                    "basicViewId": "loop-sound",
+                    "constraints": {
+                      "max": 1,
+                      "step": 0.009999999776482582,
+                      "default": "1"
+                    },
+                    "transform": {
+                      "in": {
+                        "steps": [
+                          {
+                            "op": "toPercentage"
+                          }
+                        ]
+                      },
+                      "out": {
+                        "steps": [
+                          {
+                            "op": "fromPercentage"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            ],
+            "helpTooltip": {
+              "text": "Play the file in Sound Path in a continuous loop. Swap the file for any other local sound file in the scene."
+            },
+            "version": 2
           }
         }
       }

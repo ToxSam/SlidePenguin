@@ -29,8 +29,10 @@ export const ANIMATION_TRANSITION_DURATION = 0.6
 export const BROOM_SWIPE_ANIMATION_DURATION = 0.5
 
 // PenguinPlayer stops at this Z - no more swipes, no further movement (Penguin.glb keeps sliding until stop)
-export const PENGUIN_PLAYER_STOP_Z = 58
+// Tweak here if you move the “stop swiping” line in the scene.
+export const PENGUIN_PLAYER_STOP_Z = 65
 
-// Player teleport when clicking "Play Again" (same area as penguin start)
+// Player teleport when clicking "Play Again" (same area as penguin start).
+// Tweak here if you want the camera/position after “Play Again” to match a new start area.
 export const PLAYER_INITIAL_POSITION = { x: 8, y: 0, z: 4 }
 export const PLAYER_INITIAL_CAMERA_TARGET = { x: 8, y: 0, z: 20 } // Look along the track
