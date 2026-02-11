@@ -5,6 +5,7 @@ import { setGameState, resetGameState } from './gameState'
 import { calculateScore, getEntityCenter, calculateDistance2D } from './scoring'
 import { INITIAL_SPEED, DECELERATION_RATE, SWIPE_DECELERATION_REDUCTION, SWIPE_DECELERATION_DURATION, COUNTDOWN_DURATION, SWIPE_BOX_OFFSET, SWIPE_COOLDOWN, ROTATION_SPEED_MULTIPLIER, PENGUIN_PLAYER_STOP_Z, PLAYER_INITIAL_POSITION, PLAYER_INITIAL_CAMERA_TARGET, ANIMATION_TRANSITION_DURATION, BROOM_SWIPE_ANIMATION_DURATION, PENGUIN_FRIEND_BOUNCE_DURATION, PENGUIN_FRIEND_BOUNCE_COUNT, PENGUIN_FRIEND_SCALE_BOOST } from './constants'
 import { movePlayerTo } from '~system/RestrictedActions'
+import { submitScore } from './leaderboard/leaderboardClient'
 
 // Global entity references (set in main)
 export let penguinEntity: Entity | null = null
@@ -623,6 +624,8 @@ function endGame(hasLost: boolean) {
 
   setGameState(gameStateEntity, 'ended', 0, finalScore, hasLost, finalDistance)
 
+  if (!hasLost && finalScore > 0) {
+    submitScore(finalScore)
   // Stop snowslide when game ends
   if (snowslideAudioEntity) {
     AudioSource.createOrReplace(snowslideAudioEntity, { audioClipUrl: 'assets/scene/Audio/snowslide.mp3', playing: false, loop: true, volume: 1, global: true })

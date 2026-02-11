@@ -10,8 +10,7 @@
     "upgrade-sdk:next": "npm install --save-dev @dcl/sdk@next"
   },
   "devDependencies": {
-    "@dcl/js-runtime": "7.20.0",
-    "@dcl/sdk": "7.20.0"
+    "@dcl/sdk": "https://sdk-team-cdn.decentraland.org/@dcl/js-sdk-toolchain/branch/feat/authorative-server/dcl-sdk-7.20.1-21870583522.commit-db9f5e6.tgz"
   },
   "engines": {
     "node": ">=16.0.0",
