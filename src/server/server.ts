@@ -28,15 +28,11 @@ export function server() {
 
     const address = context.from.toLowerCase()
     const displayName = getPlayerName(address)
-    const existing = leaderboardByAddress.get(address)
-    const bestScore = existing ? Math.max(existing.bestScore, score) : score
-    const playCount = (existing?.playCount ?? 0) + 1
-
-    leaderboardByAddress.set(address, {
+    leaderboardEntries.push({
       address,
       displayName,
-      bestScore,
-      playCount
+      bestScore: score,
+      playCount: 1
     })
 
     await persistLeaderboard()
@@ -51,7 +47,8 @@ export function server() {
   })
 }
 
-const leaderboardByAddress = new Map<string, LeaderboardEntry>()
+const MAX_LEADERBOARD_ENTRIES = 10
+const leaderboardEntries: LeaderboardEntry[] = []
 
 function getPlayerName(address: string): string {
   for (const [_, identity, avatarBase] of engine.getEntitiesWith(PlayerIdentityData, AvatarBase)) {
@@ -70,14 +67,14 @@ async function loadLeaderboard() {
       return
     }
     const entries = JSON.parse(stored) as LeaderboardEntry[]
-    leaderboardByAddress.clear()
+    leaderboardEntries.length = 0
     for (const entry of entries) {
       if (!entry?.address) continue
-      leaderboardByAddress.set(entry.address.toLowerCase(), {
+      leaderboardEntries.push({
         address: entry.address.toLowerCase(),
         displayName: entry.displayName || entry.address.substring(0, 8),
         bestScore: Number(entry.bestScore) || 0,
-        playCount: Number(entry.playCount) || 0
+        playCount: Number(entry.playCount) || 1
       })
     }
     broadcastLeaderboard()
@@ -86,7 +83,7 @@ async function loadLeaderboard() {
     const status = (error as { response?: { status?: number } })?.response?.status
     if (status === 404 || message.includes('404')) {
       // No data yet - treat as empty
-      leaderboardByAddress.clear()
+      leaderboardEntries.length = 0
       broadcastLeaderboard()
       return
     }
@@ -108,7 +105,8 @@ function broadcastLeaderboard() {
 }
 
 function getSortedEntries(): LeaderboardEntry[] {
-  return Array.from(leaderboardByAddress.values())
+  return leaderboardEntries
+    .filter((entry) => Number.isFinite(entry.bestScore) && entry.bestScore > 0)
     .sort((a, b) => b.bestScore - a.bestScore)
-    .slice(0, 50)
+    .slice(0, MAX_LEADERBOARD_ENTRIES)
 }

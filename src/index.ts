@@ -1,5 +1,5 @@
-import { engine, RealmInfo } from '@dcl/sdk/ecs'
-import { isServer } from '@dcl/sdk/network'
+import { engine, MeshCollider, MeshRenderer, RealmInfo, Transform } from '@dcl/sdk/ecs'
+import { isServer, syncEntity } from '@dcl/sdk/network'
 import { initializeGameEntities, gameStateSystem, penguinMovementSystem, swipeInputSystem, animationTransitionSystem } from './systems'
 import { setupUi } from './ui'
 import { server as startServer } from './server/server'
@@ -7,7 +7,8 @@ import { room } from './shared/messages'
 import { initLeaderboardClient, getLeaderboardEntries, notifyRoomReady } from './leaderboard/leaderboardClient'
 import { setupWorldLeaderboard } from './leaderboard/WorldLeaderboard'
 
-export function main() {
+export async function main() {
+   createSyncedEntity()
   if (isServer()) {
     startServer()
     return
@@ -30,7 +31,7 @@ export function main() {
     console.log('[ROOM] pong from server ts =', data.ts)
     notifyRoomReady()
   })
-
+  
   initLeaderboardClient()
   setupWorldLeaderboard(getLeaderboardEntries)
 
@@ -57,6 +58,7 @@ export function main() {
 
   // Initialize game entities and set up interactions
   initializeGameEntities()
+ 
 
   // Add game systems (animationTransitionSystem last so it processes transitions right before render)
   engine.addSystem(gameStateSystem)
@@ -66,6 +68,15 @@ export function main() {
 
   // Initialize UI
   setupUi()
+}
+
+function createSyncedEntity() {
+  const entity = engine.addEntity()
+  Transform.create(entity, { position: { x: 8, y: 1, z: 8 } })
+  // MeshRenderer.setBox(entity)
+  MeshCollider.setBox(entity)
+  syncEntity(entity, [Transform.componentId, MeshRenderer.componentId], 1)
+  return entity
 }
 
 export function server() {
