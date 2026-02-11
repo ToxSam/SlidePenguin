@@ -15,7 +15,7 @@ export async function main() {
   } else {
     console.log('[CLIENT] Running on client')
   }
-
+  // SERVER DEBUG
   let canPing = false
   room.onReady((isReady) => {
     console.log('[ROOM] ready =', isReady)
@@ -51,9 +51,9 @@ export async function main() {
     if (!info?.isConnectedSceneRoom) return
     if (!canPing) return
     lastPingAt += dt
-    if (lastPingAt < 2) return
-    lastPingAt = 0
-    room.send('ping', { ts: Date.now() })
+    // if (lastPingAt < 2) return
+    // lastPingAt = 0
+    // room.send('ping', { ts: Date.now() })
   })
 
   // Initialize game entities and set up interactions
