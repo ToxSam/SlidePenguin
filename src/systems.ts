@@ -1,9 +1,9 @@
-import { engine, Entity, Transform, PointerEventType, InputAction, pointerEventsSystem, inputSystem, Animator, GltfContainer, ColliderLayer } from '@dcl/sdk/ecs'
+import { engine, Entity, Transform, PointerEventType, InputAction, pointerEventsSystem, inputSystem, Animator, GltfContainer, ColliderLayer, AudioSource } from '@dcl/sdk/ecs'
 import { Vector3, Color4, Quaternion } from '@dcl/sdk/math'
 import { GameState, PenguinMovement, SwipeBox, Penguin, HomeTarget, StartButton, LoseTrigger, PenguinPlayerTag, BroomTag } from './components'
 import { setGameState, resetGameState } from './gameState'
 import { calculateScore, getEntityCenter, calculateDistance2D } from './scoring'
-import { INITIAL_SPEED, DECELERATION_RATE, SWIPE_DECELERATION_REDUCTION, SWIPE_DECELERATION_DURATION, COUNTDOWN_DURATION, SWIPE_BOX_OFFSET, SWIPE_COOLDOWN, ROTATION_SPEED_MULTIPLIER, PENGUIN_PLAYER_STOP_Z, PLAYER_INITIAL_POSITION, PLAYER_INITIAL_CAMERA_TARGET, ANIMATION_TRANSITION_DURATION, BROOM_SWIPE_ANIMATION_DURATION } from './constants'
+import { INITIAL_SPEED, DECELERATION_RATE, SWIPE_DECELERATION_REDUCTION, SWIPE_DECELERATION_DURATION, COUNTDOWN_DURATION, SWIPE_BOX_OFFSET, SWIPE_COOLDOWN, ROTATION_SPEED_MULTIPLIER, PENGUIN_PLAYER_STOP_Z, PLAYER_INITIAL_POSITION, PLAYER_INITIAL_CAMERA_TARGET, ANIMATION_TRANSITION_DURATION, BROOM_SWIPE_ANIMATION_DURATION, PENGUIN_FRIEND_BOUNCE_DURATION, PENGUIN_FRIEND_BOUNCE_COUNT, PENGUIN_FRIEND_SCALE_BOOST } from './constants'
 import { movePlayerTo } from '~system/RestrictedActions'
 import { submitScore } from './leaderboard/leaderboardClient'
 
@@ -41,6 +41,17 @@ let activePenguinPlayerTransition: AnimationTransition | null = null
 
 // Penguin animation crossfade state
 let penguinCurrentClip = 'Idle'
+
+// PenguinFriend.glb: Y-scale bounce on interaction (extra animation, not from GLB)
+let penguinFriendEntity: Entity | null = null
+let penguinFriendBaseScale: Vector3 | null = null
+let penguinFriendScaleEndTime = 0
+let penguinTalkAudioEntity: Entity | null = null
+// Snowslide: play while Penguin.glb is moving during gameplay (loop), stop when stopped
+let snowslideAudioEntity: Entity | null = null
+// Swipe: one-shot per swipe (no loop)
+let swipeAudioEntity: Entity | null = null
+
 interface AnimationTransition {
   entity: Entity
   fromClip: string
@@ -283,6 +294,31 @@ export function animationTransitionSystem(dt: number) {
 }
 
 /**
+ * PenguinFriend.glb: apply Y-scale bounce when interacted (extra, not from GLB).
+ * Scales up and down on Y each frame during the bounce duration.
+ */
+export function penguinFriendShakeSystem(dt: number) {
+  if (!penguinFriendEntity || !penguinFriendBaseScale || !Transform.has(penguinFriendEntity)) return
+  const now = Date.now() / 1000
+  if (now >= penguinFriendScaleEndTime) {
+    const t = Transform.getMutable(penguinFriendEntity)
+    t.scale = { ...penguinFriendBaseScale }
+    penguinFriendScaleEndTime = 0
+    return
+  }
+  const elapsed = PENGUIN_FRIEND_BOUNCE_DURATION - (penguinFriendScaleEndTime - now)
+  const progress = Math.min(1, elapsed / PENGUIN_FRIEND_BOUNCE_DURATION)
+  // Sine wave: BOUNCE_COUNT full up-down cycles over the duration
+  const scaleY = 1 + Math.sin(progress * 2 * Math.PI * PENGUIN_FRIEND_BOUNCE_COUNT) * PENGUIN_FRIEND_SCALE_BOOST
+  const t = Transform.getMutable(penguinFriendEntity)
+  t.scale = Vector3.create(
+    penguinFriendBaseScale.x,
+    penguinFriendBaseScale.y * scaleY,
+    penguinFriendBaseScale.z
+  )
+}
+
+/**
  * Initialize game entities and references
  */
 export function initializeGameEntities() {
@@ -356,10 +392,17 @@ export function initializeGameEntities() {
   )
 
   // PenguinFriend.glb: click to open "play game?" dialog
-  const penguinFriendEntity = engine.getEntityOrNullByName('PenguinFriend.glb')
+  penguinFriendEntity = engine.getEntityOrNullByName('PenguinFriend.glb')
   if (penguinFriendEntity) {
+    // Store base scale for Y-scale bounce animation
+    if (Transform.has(penguinFriendEntity)) {
+      penguinFriendBaseScale = { ...Transform.get(penguinFriendEntity).scale }
+    }
+    // PenguinTalk.mp3: reusable entity; createOrReplace + global for reliable playback
+    penguinTalkAudioEntity = engine.addEntity()
+    Transform.create(penguinTalkAudioEntity, { position: Transform.get(penguinFriendEntity).position, scale: Vector3.One(), rotation: Quaternion.Identity() })
+    AudioSource.create(penguinTalkAudioEntity, { audioClipUrl: 'assets/scene/Audio/PenguinTalk.mp3', playing: false, loop: false, volume: 1, global: true })
     // Enable pointer hits: scene has visibleMeshesCollisionMask 0, so clicks don't register.
-    // Set visible meshes to CL_POINTER so the entity can be clicked.
     if (GltfContainer.has(penguinFriendEntity)) {
       const gltf = GltfContainer.getMutable(penguinFriendEntity)
       gltf.visibleMeshesCollisionMask = ColliderLayer.CL_POINTER
@@ -377,6 +420,12 @@ export function initializeGameEntities() {
         if (!gameStateEntity) return
         const gameState = GameState.get(gameStateEntity)
         if (gameState.state !== 'idle') return
+        // Play PenguinTalk.mp3 (global so it plays reliably regardless of player position)
+        if (penguinTalkAudioEntity) {
+          AudioSource.createOrReplace(penguinTalkAudioEntity, { audioClipUrl: 'assets/scene/Audio/PenguinTalk.mp3', playing: true, loop: false, volume: 1, global: true })
+        }
+        // Trigger Y-scale bounce animation
+        penguinFriendScaleEndTime = Date.now() / 1000 + PENGUIN_FRIEND_BOUNCE_DURATION
         const mutable = GameState.getMutable(gameStateEntity)
         mutable.showPenguinFriendDialog = true
       }
@@ -394,6 +443,16 @@ export function initializeGameEntities() {
     isVisible: false,
     lastSwipeTime: 0
   })
+
+  // Snowslide.mp3: play while Penguin.glb is moving, stop when stopped (same pattern as PenguinTalk – reusable entity, global)
+  snowslideAudioEntity = engine.addEntity()
+  Transform.create(snowslideAudioEntity, { position: Transform.get(penguinEntity).position, scale: Vector3.One(), rotation: Quaternion.Identity() })
+  AudioSource.create(snowslideAudioEntity, { audioClipUrl: 'assets/scene/Audio/snowslide.mp3', playing: false, loop: true, volume: 1, global: true })
+
+  // Swipe.mp3: one-shot per swipe (reusable entity, global)
+  swipeAudioEntity = engine.addEntity()
+  Transform.create(swipeAudioEntity, { position: Transform.get(penguinEntity).position, scale: Vector3.One(), rotation: Quaternion.Identity() })
+  AudioSource.create(swipeAudioEntity, { audioClipUrl: 'assets/scene/Audio/swipe.mp3', playing: false, loop: false, volume: 1, global: true })
 }
 
 /**
@@ -531,6 +590,10 @@ function handleSwipe() {
     }
     const mutableSwipeBox = SwipeBox.getMutable(swipeBoxEntity)
     mutableSwipeBox.lastSwipeTime = currentTime
+    // Swipe.mp3: one-shot per swipe (same pattern as PenguinTalk – createOrReplace with playing: true)
+    if (swipeAudioEntity) {
+      AudioSource.createOrReplace(swipeAudioEntity, { audioClipUrl: 'assets/scene/Audio/swipe.mp3', playing: true, loop: false, volume: 1, global: true })
+    }
   }
 }
 
@@ -563,6 +626,9 @@ function endGame(hasLost: boolean) {
 
   if (!hasLost && finalScore > 0) {
     submitScore(finalScore)
+  // Stop snowslide when game ends
+  if (snowslideAudioEntity) {
+    AudioSource.createOrReplace(snowslideAudioEntity, { audioClipUrl: 'assets/scene/Audio/snowslide.mp3', playing: false, loop: true, volume: 1, global: true })
   }
 
   // Remove movement component
@@ -622,6 +688,11 @@ export function restartGame() {
   // Reset swipe box state
   if (swipeBoxEntity && SwipeBox.has(swipeBoxEntity)) {
     SwipeBox.getMutable(swipeBoxEntity).isVisible = false
+  }
+
+  // Stop snowslide when restarting
+  if (snowslideAudioEntity) {
+    AudioSource.createOrReplace(snowslideAudioEntity, { audioClipUrl: 'assets/scene/Audio/snowslide.mp3', playing: false, loop: true, volume: 1, global: true })
   }
 
   // Remove any movement component
@@ -817,6 +888,12 @@ export function penguinMovementSystem(dt: number) {
 
   // Update velocity vector
   movement.velocity = Vector3.scale(movement.direction, movement.currentSpeed)
+
+  // Snowslide.mp3: play while Penguin is moving, stop when stopped (same pattern as PenguinTalk – global, loop)
+  if (snowslideAudioEntity) {
+    const playing = movement.currentSpeed > 0.01
+    AudioSource.createOrReplace(snowslideAudioEntity, { audioClipUrl: 'assets/scene/Audio/snowslide.mp3', playing, loop: true, volume: 1, global: true })
+  }
 
   // Update position
   const deltaPosition = Vector3.scale(movement.velocity, dt)

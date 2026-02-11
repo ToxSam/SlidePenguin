@@ -2,14 +2,14 @@
   "ecs7": true,
   "runtimeVersion": "7",
   "display": {
-    "title": "SlidePenguin",
-    "description": "Empty Scene Template",
+    "title": "Slide Penguin",
+    "description": "Welcome to Slide Penguin!\nPenguins love to slide on the ice, but they're too indecisive to know when to swipe! One penguin slides while another sweeps the ice in front of them - you just need to tell the sweeper when to go!\nGet your penguin as close to home as possible to climb the leaderboard!\nGame created for the Community Winterfest Games event\nMade with love by the DCL Regenesis Labs team",
     "favicon": "favicon_asset",
-    "navmapThumbnail": ""
+    "navmapThumbnail": "assets/scene/Images/SlidePenguinThumbnail.png"
   },
   "owner": "",
   "contact": {
-    "name": "SDK",
+    "name": "DCL Regenesis Labs",
     "email": ""
   },
   "main": "bin/index.js",

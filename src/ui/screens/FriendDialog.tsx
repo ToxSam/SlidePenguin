@@ -26,7 +26,7 @@ export function FriendDialog() {
       >
         <RoundedPanel innerColor={Color4.create(0.2, 0.4, 0.85, 1)}>
           <Label
-            value={'Hey What supp\nGanna play a game?'}
+            value={'Hey What supp\nWanna play a game?'}
             fontSize={44}
             color={Color4.White()}
             textAlign="middle-center"

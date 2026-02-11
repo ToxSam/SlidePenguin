@@ -1,6 +1,6 @@
 import { engine, MeshCollider, MeshRenderer, RealmInfo, Transform } from '@dcl/sdk/ecs'
 import {  syncEntity } from '@dcl/sdk/network'
-import { initializeGameEntities, gameStateSystem, penguinMovementSystem, swipeInputSystem, animationTransitionSystem } from './systems'
+import { initializeGameEntities, gameStateSystem, penguinMovementSystem, swipeInputSystem, animationTransitionSystem,penguinFriendShakeSystem } from './systems'
 import { setupUi } from './ui'
 import { server as startServer } from './server/server'
 import { initLeaderboardClient, getLeaderboardEntries, notifyRoomReady } from './leaderboard/leaderboardClient'
@@ -66,6 +66,7 @@ export async function main() {
   engine.addSystem(penguinMovementSystem)
   engine.addSystem(swipeInputSystem) // E key input handler
   engine.addSystem(animationTransitionSystem)
+  engine.addSystem(penguinFriendShakeSystem)
 
   // Initialize UI
   setupUi()
