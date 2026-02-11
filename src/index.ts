@@ -1,11 +1,12 @@
 import { engine, MeshCollider, MeshRenderer, RealmInfo, Transform } from '@dcl/sdk/ecs'
-import { isServer, syncEntity } from '@dcl/sdk/network'
+import {  syncEntity } from '@dcl/sdk/network'
 import { initializeGameEntities, gameStateSystem, penguinMovementSystem, swipeInputSystem, animationTransitionSystem } from './systems'
 import { setupUi } from './ui'
 import { server as startServer } from './server/server'
-import { room } from './shared/messages'
 import { initLeaderboardClient, getLeaderboardEntries, notifyRoomReady } from './leaderboard/leaderboardClient'
 import { setupWorldLeaderboard } from './leaderboard/WorldLeaderboard'
+import { isServer } from '@dcl/sdk/network'
+import { room } from './shared/messages'
 
 export async function main() {
    createSyncedEntity()
