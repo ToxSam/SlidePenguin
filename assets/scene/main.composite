@@ -2349,7 +2349,7 @@
         "serializationType": "map"
       },
       "data": {
-        "523": {
+        "0": {
           "json": {
             "gizmo": 3
           }
@@ -2683,14 +2683,19 @@
         "0": {
           "json": {
             "name": "SlidePenguin",
-            "description": "Empty Scene Template",
-            "thumbnail": "",
+            "description": "Welcome to Slide Penguin!\nPenguins love to slide on the ice, but they're too indecisive to know when to swipe! One penguin slides while another sweeps the ice in front of them - you just need to tell the sweeper when to go!\nGet your penguin as close to home as possible to climb the leaderboard!\nGame created for the Community Winterfest Games event\nMade with love by the DCL Regenesis Labs team",
+            "thumbnail": "assets/scene/Images/SlidePenguinThumbnail.png",
             "ageRating": "T",
             "categories": [],
-            "author": "SDK",
-            "email": "",
-            "tags": [],
+            "author": "DCL Regenesis Labs",
+            "tags": [
+              ""
+            ],
             "layout": {
+              "base": {
+                "x": -140,
+                "y": 101
+              },
               "parcels": [
                 {
                   "x": -140,
@@ -2712,14 +2717,8 @@
                   "x": -140,
                   "y": 101
                 }
-              ],
-              "base": {
-                "x": -140,
-                "y": 101
-              }
+              ]
             },
-            "silenceVoiceChat": false,
-            "disablePortableExperiences": false,
             "spawnPoints": [
               {
                 "name": "Spawn Point 1",
@@ -2756,8 +2755,7 @@
             ],
             "skyboxConfig": {
               "fixedTime": 43200
-            },
-            "creator": ""
+            }
           }
         }
       }
@@ -4395,6 +4393,28 @@
             },
             "version": 1
           }
+        }
+      }
+    },
+    {
+      "name": "inspector::UIState",
+      "jsonSchema": {
+        "type": "object",
+        "properties": {
+          "sceneInfoPanelVisible": {
+            "type": "boolean",
+            "serializationType": "optional",
+            "optionalJsonSchema": {
+              "type": "boolean",
+              "serializationType": "boolean"
+            }
+          }
+        },
+        "serializationType": "map"
+      },
+      "data": {
+        "0": {
+          "json": {}
         }
       }
     }
