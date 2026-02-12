@@ -27,6 +27,7 @@ export enum EntityNames {
   Invisible_Sphere_7 = "Invisible Sphere_7",
   Invisible_Sphere_8 = "Invisible Sphere_8",
   Invisible_Sphere_9 = "Invisible Sphere_9",
+  LeaderBoardPanel01_glb = "LeaderBoardPanel01.glb",
   Penguin_glb = "Penguin.glb",
   PenguinCrowd_glb = "PenguinCrowd.glb",
   PenguinCrowd_glb_10 = "PenguinCrowd.glb_10",

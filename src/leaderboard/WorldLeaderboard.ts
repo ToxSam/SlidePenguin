@@ -17,7 +17,7 @@ const LEADERBOARD_TEXT_SCALE = Vector3.create(1.2, 1.2, 1)
 const LEADERBOARD_NAME_WIDTH = 10
 const LEADERBOARD_HEADER_GAP = 4
 const LEADERBOARD_HEADER_BODY_GAP = 0.65
-const LEADERBOARD_ENTITY_NAME = 'LeaderBoard01.glb'
+const LEADERBOARD_ENTITY_NAME = 'LeaderBoardPanel01.glb'
 
 export function setupWorldLeaderboard(getEntries: () => LeaderboardEntry[]) {
   let worldLeaderboardTextEntity: Entity | null = null
@@ -32,7 +32,7 @@ export function setupWorldLeaderboard(getEntries: () => LeaderboardEntry[]) {
     if (byName) return byName
     for (const [entity] of engine.getEntitiesWith(GltfContainer)) {
       const src = GltfContainer.get(entity).src
-      if (src && src.includes('LeaderBoard01')) return entity
+      if (src && src.includes('LeaderBoardPanel01')) return entity
     }
     return null
   }
@@ -113,9 +113,9 @@ export function setupWorldLeaderboard(getEntries: () => LeaderboardEntry[]) {
     leaderboardPanel = createLeaderboardPanel({
       parent: entity,
       transform: {
-        position: Vector3.create(0, 3.1, 0.7),
-        rotation: LEADERBOARD_TEXT_ROTATION,
-        scale: Vector3.create(1, 1, 1)
+        position: Vector3.create(0.1, 2.2, -0.175),
+        rotation: Quaternion.Identity(),
+        scale: Vector3.create(0.61, 0.61, 0.61)
       }
     })
   }

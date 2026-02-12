@@ -58,7 +58,7 @@
     "portableExperiences": "enabled"
   },
   "authoritativeMultiplayer": true,
-  "multiplayerId": "slidePenguin",
+  "multiplayerId": "test",
   "worldConfiguration": {
     "name": "mendoexit.dcl.eth"
   },
@@ -74,7 +74,5 @@
     "origin": "creator-hub",
     "projectId": "48a7986b-d775-49df-a38d-25a871574301"
   },
-  "authoritativeMultiplayer": true,
-  "multiplayerId": "test",
   "rating": "T"
 }

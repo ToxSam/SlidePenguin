@@ -626,9 +626,16 @@ function endGame(hasLost: boolean) {
 
   if (!hasLost && finalScore > 0) {
     submitScore(finalScore)
+  }
   // Stop snowslide when game ends
   if (snowslideAudioEntity) {
-    AudioSource.createOrReplace(snowslideAudioEntity, { audioClipUrl: 'assets/scene/Audio/snowslide.mp3', playing: false, loop: true, volume: 1, global: true })
+    AudioSource.createOrReplace(snowslideAudioEntity, {
+      audioClipUrl: 'assets/scene/Audio/snowslide.mp3',
+      playing: false,
+      loop: true,
+      volume: 1,
+      global: true
+    })
   }
 
   // Remove movement component

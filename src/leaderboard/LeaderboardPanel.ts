@@ -1,4 +1,4 @@
-import { engine, Entity, Transform, TransformTypeWithOptionals, MeshRenderer, Material, TextShape, TextAlignMode } from '@dcl/sdk/ecs'
+import { engine, Entity, Transform, TransformTypeWithOptionals, TextShape, TextAlignMode } from '@dcl/sdk/ecs'
 import { Color4, Quaternion, Vector3 } from '@dcl/sdk/math'
 
 export type LeaderboardPanelEntry = {
@@ -36,17 +36,22 @@ export function createLeaderboardPanel(options: LeaderboardPanelOptions = {}) {
     Transform.createOrReplace(root, options.transform ?? {})
   }
 
-  // Background panel
-  const background = engine.addEntity()
-  Transform.createOrReplace(background, {
+  const white = Color4.White()
+
+  const titleEntity = engine.addEntity()
+  Transform.createOrReplace(titleEntity, {
     parent: root,
-    position: Vector3.create(0, 0, 0),
+    position: Vector3.create(0, size.y / 2 - 0.55, -0.01),
     rotation: Quaternion.Identity(),
-    scale: Vector3.create(size.x, size.y, 1)
+    scale: Vector3.One()
   })
-  MeshRenderer.setPlane(background)
-  Material.setBasicMaterial(background, {
-    diffuseColor: Color4.fromHexString('#111111ff')
+  TextShape.createOrReplace(titleEntity, {
+    text: 'LEADERBOARD',
+    fontSize: 2.2,
+    textColor: white,
+    outlineColor: Color4.Black(),
+    outlineWidth: 0.1,
+    textAlign: TextAlignMode.TAM_MIDDLE_CENTER
   })
 
   const headerRow = engine.addEntity()
@@ -66,7 +71,7 @@ export function createLeaderboardPanel(options: LeaderboardPanelOptions = {}) {
   TextShape.createOrReplace(headerName, {
     text: 'PLAYER',
     fontSize: 1.35,
-    textColor: Color4.fromHexString('#076F7B'),
+    textColor: white,
     outlineColor: Color4.Black(),
     outlineWidth: 0.1,
     textAlign: TextAlignMode.TAM_MIDDLE_LEFT
@@ -82,7 +87,7 @@ export function createLeaderboardPanel(options: LeaderboardPanelOptions = {}) {
   TextShape.createOrReplace(headerScore, {
     text: 'POINTS',
     fontSize: 1.35,
-    textColor: Color4.fromHexString('#076F7B'),
+    textColor: white,
     outlineColor: Color4.Black(),
     outlineWidth: 0.1,
     textAlign: TextAlignMode.TAM_MIDDLE_RIGHT
@@ -111,7 +116,7 @@ export function createLeaderboardPanel(options: LeaderboardPanelOptions = {}) {
     TextShape.createOrReplace(rankText, {
       text: `${r + 1}.`,
       fontSize: 1.2,
-      textColor: Color4.fromHexString('#bbbbbbff'),
+      textColor: white,
       outlineColor: Color4.Black(),
       outlineWidth: 0.1,
       textAlign: TextAlignMode.TAM_MIDDLE_LEFT
@@ -127,7 +132,7 @@ export function createLeaderboardPanel(options: LeaderboardPanelOptions = {}) {
     TextShape.createOrReplace(nameText, {
       text: '---',
       fontSize: 1.5,
-      textColor: Color4.White(),
+      textColor: white,
       outlineColor: Color4.Black(),
       outlineWidth: 0.1,
       textAlign: TextAlignMode.TAM_MIDDLE_LEFT
@@ -143,7 +148,7 @@ export function createLeaderboardPanel(options: LeaderboardPanelOptions = {}) {
     TextShape.createOrReplace(scoreText, {
       text: '--',
       fontSize: 1.5,
-      textColor: Color4.White(),
+      textColor: white,
       outlineColor: Color4.Black(),
       outlineWidth: 0.1,
       textAlign: TextAlignMode.TAM_MIDDLE_RIGHT
